@@ -3,12 +3,12 @@ import re
 from deep_translator import GoogleTranslator
 
 TARGET_DIR_PATH = "/Users/username/Downloads/ChineseDirName"  # Change this to your target directory path
-CHINESE_SYMBOLS_PATTERN = '[\u4e00-\u9fff]'  # If you want other languages, change this regex pattern
+TARGET_SYMBOLS_PATTERN = '[\u4e00-\u9fff]'  # Chinese pattern. If you want other languages, change this regex pattern
 TARGET_LANGUAGE = 'en'  # Change this to your target language code
 
 
 def contain_symbols_for_translation(text):
-    return re.search(CHINESE_SYMBOLS_PATTERN, text) is not None
+    return re.search(TARGET_SYMBOLS_PATTERN, text) is not None
 
 
 def translate_name(name):
@@ -46,6 +46,8 @@ def rename_tree(root_path):
         new_root = os.path.join(parent, new_base)
         os.rename(root_path, new_root)
         print(f"Renamed root dir: {root_path} -> {new_root}")
+
+    print("Finished!")
 
 
 if __name__ == "__main__":
